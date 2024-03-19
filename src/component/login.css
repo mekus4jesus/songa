@@ -1,0 +1,7 @@
+span::before{
+  display: inline-flex;
+  align-items: center;
+   content: '';
+ 
+ width: 50%;
+}
