@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 import './App.css';
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import { Home } from './pages/homepage/home';
@@ -12,13 +12,15 @@ import { Footer } from './component/footer';
 
 function App() {
   return (
+    <ChakraProvider>
     <Box>
       <ShopContextProvider>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <AppContent />
         </Router>
       </ShopContextProvider>
     </Box>
+    </ChakraProvider>
   );
 }
 
@@ -34,7 +36,7 @@ function AppContent() {
       {/* Render the Navbar only if it's not the SignUpForm route */}
       {!isSignUpPage && <Navbar />}
       <Routes>
-        <Route path='/' element={<Home />} />
+      <Route path='/' element={<Home />} exact={true} /> 
         <Route path='/store-locator' element={<StoreLocator />} />
         <Route path='/sell-product' element={<Sell />} />
         <Route path='/cart' element={<Carts />} />
